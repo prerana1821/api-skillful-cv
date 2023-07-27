@@ -15,8 +15,6 @@ const PORT = 4000;
 app.use(cors());
 app.use(bodyParser.json());
 
-// initializeDBConnection();
-
 app.use("/resumes", resume);
 app.use("/ai-suggestions", aisuggestions);
 
@@ -26,10 +24,6 @@ app.get("/", (req, res) => {
 
 app.use(routeNotFound);
 app.use(errorHandler);
-
-// app.listen(PORT, () => {
-//   console.log("server started at", PORT);
-// });
 
 initializeDBConnection().then(() => {
   app.listen(PORT, () => {
