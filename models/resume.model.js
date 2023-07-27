@@ -12,6 +12,9 @@ const ResumeSchema = new Schema({
     required: [true, "Please enter your resume ID"],
     unique: "ResumeID should be unique",
   },
+  template: {
+    type: String,
+  },
   resumeValue: {
     type: String,
     required: [true, "Please enter your resume data"],

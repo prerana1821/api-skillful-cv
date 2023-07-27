@@ -19,6 +19,7 @@ router.get("/:resumeId", async (req, res) => {
         message: "Resume retrieved successfully",
         data: {
           email: resume.email,
+          template: resume.template,
           resumeValue: resume.resumeValue,
         },
       });
@@ -33,7 +34,7 @@ router.get("/:resumeId", async (req, res) => {
 });
 
 router.post("/", async (req, res) => {
-  const { email, resumeValue, uniqueId } = req.body;
+  const { email, resumeValue, uniqueId, template } = req.body;
 
   try {
     let resume = await Resume.findOne({ email });
@@ -41,11 +42,13 @@ router.post("/", async (req, res) => {
     if (resume) {
       // Email exists, update resumeValue
       resume.resumeValue = resumeValue;
+      resume.template = template;
       await resume.save();
     } else {
       // Email doesn't exist, create a new resume document
       resume = new Resume({
         email,
+        template,
         resumeId: uniqueId,
         resumeValue,
       });
