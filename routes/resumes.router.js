@@ -38,8 +38,6 @@ router.post("/", async (req, res) => {
 
   let fullUrl = req.protocol + "://" + req.get("host") + req.originalUrl;
 
-  console.log({ fullUrl });
-
   try {
     let resume = await Resume.findOne({ email });
 

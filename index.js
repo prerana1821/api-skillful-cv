@@ -27,6 +27,6 @@ app.use(errorHandler);
 
 initializeDBConnection().then(() => {
   app.listen(PORT, () => {
-    console.log("listening for requests");
+    console.info("listening for requests");
   });
 });

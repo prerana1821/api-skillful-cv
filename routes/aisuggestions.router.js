@@ -32,8 +32,6 @@ router.post("/", async (req, res) => {
 
   let fullUrl = req.protocol + "://" + req.get("host") + req.originalUrl;
 
-  console.log({ fullUrl });
-
   const prompt = promptFn({
     name,
     jobTitle,
@@ -59,10 +57,10 @@ router.post("/", async (req, res) => {
     });
   } catch (error) {
     if (error.response) {
-      console.log(error.response.status);
-      console.log(error.response.data);
+      console.error(error.response.status);
+      console.error(error.response.data);
     } else {
-      console.log(error.message);
+      console.error(error.message);
     }
   }
 });

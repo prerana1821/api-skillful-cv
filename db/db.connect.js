@@ -9,7 +9,7 @@ const initializeDBConnection = async () => {
       useUnifiedTopology: true,
     });
     if (connection) {
-      console.log("Successfully Connected");
+      console.info("Successfully Connected");
     }
   } catch (error) {
     console.error("mongoose connection failed", error);
