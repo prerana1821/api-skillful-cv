@@ -36,6 +36,10 @@ router.get("/:resumeId", async (req, res) => {
 router.post("/", async (req, res) => {
   const { email, resumeValue, uniqueId, template } = req.body;
 
+  let fullUrl = req.protocol + "://" + req.get("host") + req.originalUrl;
+
+  console.log({ fullUrl });
+
   try {
     let resume = await Resume.findOne({ email });
 

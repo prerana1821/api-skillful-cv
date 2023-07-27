@@ -22,16 +22,6 @@ router.post("/", async (req, res) => {
     selectedOption,
   } = req.body;
 
-  console.log({
-    name,
-    jobTitle,
-    country,
-    key,
-    selectedText,
-    selectedObject,
-    selectedOption,
-  });
-
   const promptFn = prompts[selectedOption]?.[key];
   if (!promptFn) {
     return res.status(400).json({
@@ -39,6 +29,10 @@ router.post("/", async (req, res) => {
       error: "Invalid key provided.",
     });
   }
+
+  let fullUrl = req.protocol + "://" + req.get("host") + req.originalUrl;
+
+  console.log({ fullUrl });
 
   const prompt = promptFn({
     name,
@@ -59,7 +53,6 @@ router.post("/", async (req, res) => {
         },
       ],
     });
-    console.log(chatCompletion.data.choices[0]);
     return res.status(200).json({
       success: true,
       data: chatCompletion.data.choices[0].message.content,
